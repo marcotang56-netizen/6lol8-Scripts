@@ -1,4 +1,4 @@
---// 6lol8 Void - Simple Key System
+--// 6lol8 Void - Simple Key System (With Workspace Auto-Save)
 -- Run with: script_key = "yourkeyhere"; loadstring(game:HttpGet("RAW_URL"))();
 
 local Players = game:GetService("Players")
@@ -17,11 +17,30 @@ local ValidKeys = {
     "6lol",
 }
 
---// Check Key
+--// ==================== WORKSPACE AUTO-SAVE LOGIC ====================
 local keyValid = false
-if script_key and typeof(script_key) == "string" then
+local folderName = "6lol8Void"
+local keyFilePath = folderName .. "/key.txt"
+
+-- 1. Safely create the folder in the executor's workspace if it doesn't exist
+if isfolder and makefolder then
+    if not isfolder(folderName) then
+        makefolder(folderName)
+    end
+end
+
+-- 2. Try to read a previously saved key from the file
+local savedKey = nil
+if isfile and readfile and isfile(keyFilePath) then
+    savedKey = readfile(keyFilePath):match("^%s*(.-)%s*$")
+end
+
+-- 3. Check if either the script_key (from loadstring) OR the savedKey is valid
+local keyToCheck = script_key or savedKey
+
+if keyToCheck and typeof(keyToCheck) == "string" then
     for _, key in ipairs(ValidKeys) do
-        if key == script_key then
+        if key == keyToCheck then
             keyValid = true
             break
         end
@@ -321,8 +340,14 @@ if not keyValid then
         local entered = KeyBox.Text:match("^%s*(.-)%s*$")
         for _, key in ipairs(ValidKeys) do
             if key == entered then
+                
+                -- NEW: Save the key to the workspace folder so they never have to type it again!
+                if writefile then
+                    writefile(keyFilePath, entered)
+                end
+
                 KeyGui:Destroy()
-                notify("✅ Success", "Key accepted! Loading 6lol8 Void...", 4)
+                notify("✅ Success", "Key accepted & saved! Loading 6lol8 Void...", 4)
                 loadMainGUI()
                 return
             end
@@ -340,6 +365,6 @@ if not keyValid then
 
     notify("🔑 Key System", "Enter your key or join Discord", 6)
 else
-    -- If key is already valid via executor script_key variable
+    -- If key is already valid via executor script_key variable OR auto-save file
     loadMainGUI()
 end
