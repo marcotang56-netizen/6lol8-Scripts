@@ -1,4 +1,4 @@
---// 6lol8 Void - Simple Key System (With Workspace Auto-Save)
+--// tenko Void - Simple Key System (With Workspace Auto-Save)
 -- Run with: script_key = "yourkeyhere"; loadstring(game:HttpGet("RAW_URL"))();
 
 local Players = game:GetService("Players")
@@ -19,7 +19,7 @@ local ValidKeys = {
 
 --// ==================== WORKSPACE AUTO-SAVE LOGIC ====================
 local keyValid = false
-local folderName = "6lol8Void"
+local folderName = "tenkoVoid"
 local keyFilePath = folderName .. "/key.txt"
 
 -- 1. Safely create the folder in the executor's workspace if it doesn't exist
@@ -56,10 +56,10 @@ local function notify(title, text, duration)
     })
 end
 
---// ==================== MAIN 6LOL8 GUI (DEFINED FIRST) ====================
+--// ==================== MAIN TENKO GUI (DEFINED FIRST) ====================
 local function loadMainGUI()
     local ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Name = "Void6lol8"
+    ScreenGui.Name = "tenkoVoid"
     ScreenGui.ResetOnSpawn = false
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
@@ -101,7 +101,7 @@ local function loadMainGUI()
     TitleLabel.Size = UDim2.new(1, -80, 1, 0)
     TitleLabel.Position = UDim2.new(0, 20, 0, 0)
     TitleLabel.BackgroundTransparency = 1
-    TitleLabel.Text = "6lol8 void"
+    TitleLabel.Text = "tenko void"
     TitleLabel.TextColor3 = Color3.fromRGB(240, 210, 255)
     TitleLabel.TextSize = 20
     TitleLabel.Font = Enum.Font.GothamBlack
@@ -249,7 +249,7 @@ local function loadMainGUI()
     end)
 
     updateUI()
-    notify("✅ 6lol8 Void", "Loaded successfully! Press P or click button", 5)
+    notify("✅ tenko Void", "Loaded successfully! Press P or click button", 5)
 end
 
 --// ==================== KEY SYSTEM LOGIC ====================
@@ -276,7 +276,7 @@ if not keyValid then
     local Title = Instance.new("TextLabel")
     Title.Size = UDim2.new(1, 0, 0, 60)
     Title.BackgroundTransparency = 1
-    Title.Text = "6LOL8 VOID"
+    Title.Text = "TENKO VOID"
     Title.TextColor3 = Color3.fromRGB(240, 210, 255)
     Title.TextSize = 24
     Title.Font = Enum.Font.GothamBlack
@@ -347,7 +347,7 @@ if not keyValid then
                 end
 
                 KeyGui:Destroy()
-                notify("✅ Success", "Key accepted & saved! Loading 6lol8 Void...", 4)
+                notify("✅ Success", "Key accepted & saved! Loading tenko Void...", 4)
                 loadMainGUI()
                 return
             end
