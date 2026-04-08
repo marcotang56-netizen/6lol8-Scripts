@@ -12,8 +12,9 @@ local LocalPlayer = Players.LocalPlayer
 local DiscordLink = "https://discord.gg/EYpFQQBhAd"  -- ← CHANGE THIS
 
 local ValidKeys = {
-    "FMkPLNyKlfgaVSnZXihptDVtnHLuklpv",
-    "tenko", -- Added your custom key here
+    "6lol8",
+    "tenko", 
+    "6lol",
 }
 
 --// Check Key
